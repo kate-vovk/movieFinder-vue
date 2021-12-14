@@ -1,7 +1,23 @@
 <template lang="">
-  <div>
-    <button @click="login" type="submit">Sign in</button>
-  </div>
+  <form className="loginForm" @submit.prevent="login">
+    <div className="loginForm_inputs_container" aria-required="true">
+      <input
+        v-model="form.email"
+        className="inpText_Login"
+        type="email"
+        required
+        placeholder="Email"
+      />
+      <input
+        v-model="form.password"
+        className="inpText_Login"
+        type="password"
+        required
+        placeholder="Password"
+      />
+    </div>
+    <button className="loginButton" @click="login" type="submit">Sign in</button>
+  </form>
 </template>
 
 <script lang="ts">
@@ -10,14 +26,15 @@ import { defineComponent, watchEffect } from 'vue';
 
 import { CLIENT_PATHS } from '@/constants/constants';
 import { useStore } from '@/store';
+import '@/styles/loginForm.scss';
 
 export default defineComponent({
   name: 'SignInForm',
   data() {
     return {
       form: {
-        email: 'test@gmail.com',
-        password: 'Qwerty12345!',
+        email: '',
+        password: '',
       },
     };
   },
@@ -31,7 +48,7 @@ export default defineComponent({
         console.warn('store', store.state.auth);
         console.warn('isLoggedIn', this.isLoggedIn);
       } catch (error) {
-        console.warn('Error');
+        console.warn('Error', error);
       }
     },
   },
