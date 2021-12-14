@@ -15,8 +15,6 @@ export default defineComponent({
   name: 'SignInForm',
   data() {
     return {
-      // email: 'test@gmail.com',
-      // password: 'Qwerty12345!',
       form: {
         email: 'test@gmail.com',
         password: 'Qwerty12345!',
@@ -27,10 +25,6 @@ export default defineComponent({
     ...mapActions(['LOG_IN']),
     async login() {
       const store = useStore();
-      // const store = useStore();
-      const User = new FormData();
-      User.append('email', this.form.email);
-      User.append('password', this.form.password);
       try {
         await this.LOG_IN({ email: this.form.email, password: this.form.password });
         this.$router.push(CLIENT_PATHS.movies);
