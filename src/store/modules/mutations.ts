@@ -8,16 +8,18 @@ export type Mutations<S = IAuth> = {
 
 export const mutations: MutationTree<IAuth> & Mutations = {
   [AuthMutationTypes.SET_USER](state: IAuth, { userId, userName, userEmail, userRole }: IAuth) {
-    console.warn(
-      'mutations',
-      AuthMutationTypes.SET_USER,
-      state,
-      userId,
-      userName,
-      userEmail,
-      userRole,
-    );
-    state = { userId, userName, userEmail, userRole };
+    // console.warn(
+    //   'mutations',
+    //   AuthMutationTypes.SET_USER,
+    //   state,
+    //   userId,
+    //   userName,
+    //   userEmail,
+    //   userRole,
+    // );
     state.userId = userId;
+    state.userName = userName;
+    state.userEmail = userEmail;
+    state.userRole = userRole;
   },
 };

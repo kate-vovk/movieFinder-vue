@@ -9,4 +9,5 @@ export const CLIENT_PATHS = {
   admin: '/admin',
   main: '/',
   comments: '/comments',
+  userChat: '/userChat',
 };

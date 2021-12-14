@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw, RouteParams } from 'vue
 import { CLIENT_PATHS } from '@/constants/constants';
 import SignInForm from '@/views/SignInForm.vue';
 import MoviesPage from '@/views/MoviesPage.vue';
+import UserChat from '@/views/UserChat.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     path: CLIENT_PATHS.movies,
     name: 'Movies',
     component: MoviesPage,
+  },
+  {
+    path: CLIENT_PATHS.userChat,
+    name: 'UserChat',
+    component: UserChat,
   },
   {
     path: CLIENT_PATHS.signin,
