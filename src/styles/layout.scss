@@ -1,0 +1,33 @@
+.layout {
+  flex: 1;
+  overflow: auto;
+  background-color: lavender;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .logoContainer {
+    width: 20%;
+  }
+  .logo {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .navigation {
+    display: flex;
+    color: white;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: 600px) {
+    .logoContainer {
+      width: 110px;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .logoContainer {
+      width: 200px;
+    }
+  }
+}
