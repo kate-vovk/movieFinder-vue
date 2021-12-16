@@ -3,6 +3,8 @@ import { CLIENT_PATHS } from '@/constants/constants';
 import SignInForm from '@/views/SignInForm.vue';
 import MoviesPage from '@/views/MoviesPage.vue';
 import UserChat from '@/views/UserChat.vue';
+import NotFound from '@/views/NotFound.vue';
+
 import { store } from '@/store';
 
 const routes: Array<RouteRecordRaw> = [
@@ -27,6 +29,15 @@ const routes: Array<RouteRecordRaw> = [
     name: 'SignIn',
     component: SignInForm,
   },
+  {
+    path: CLIENT_PATHS.notFound,
+    component: NotFound,
+  },
+  {
+    path: '/:catchNotfound(.*)',
+    name: 'NotFound',
+    redirect: CLIENT_PATHS.notFound,
+  },
 ];
 
 export const router = createRouter({
@@ -39,10 +50,8 @@ router.beforeEach((to, from, next) => {
   // if object contains meta with value  requiresAuth === true
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
-      console.log('private routing, go to', to);
       return next(); // if use is logged in, go to the desired route
     }
-    console.log('private routing, redirect to login page, isLoggedIn', store.getters.isLoggedIn);
     return next(CLIENT_PATHS.signin); // else if not logged in, redirect to /signin route
   }
   return next();
