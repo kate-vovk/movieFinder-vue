@@ -41,15 +41,8 @@ export default defineComponent({
   methods: {
     ...mapActions(['LOG_IN']),
     async login() {
-      const store = useStore();
-      try {
-        await this.LOG_IN({ email: this.form.email, password: this.form.password });
-        this.$router.push(CLIENT_PATHS.movies);
-        console.warn('store', store.state.auth);
-        console.warn('isLoggedIn', this.isLoggedIn);
-      } catch (error) {
-        console.warn('Error', error);
-      }
+      await this.LOG_IN({ email: this.form.email, password: this.form.password }); // instead of dispatch('LOG_IN')
+      this.$router.push(CLIENT_PATHS.movies);
     },
   },
   computed: {
@@ -61,7 +54,7 @@ export default defineComponent({
     const store = useStore();
     console.log('created');
     watchEffect(() => {
-      console.warn(store.state.auth);
+      console.warn('isLoggedeIn', this.isLoggedIn, store.state.auth);
     });
   },
   // setup() {
