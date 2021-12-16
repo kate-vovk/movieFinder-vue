@@ -47,8 +47,3 @@ router.beforeEach((to, from, next) => {
   }
   return next();
 });
-// export function routerPush(path: any, params?: RouteParams): ReturnType<typeof router.push> {
-//   console.warn('params', params);
-//   if (params !== undefined) return router.push({ path, params });
-//   return router.push(path);
-// }

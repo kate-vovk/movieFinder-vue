@@ -13,13 +13,9 @@ const apiClient = axios.create({
 export default class HTTPService {
   static post(data: any, path = ''): Promise<AxiosResponse> {
     return apiClient.post(path, data);
-    // .then((response: AxiosResponse) => {
-    //   console.warn('response', response);
-    //   return response;
-    // })
-    // .catch((err: any) => {
-    //   console.warn('error', err);
-    //   throw new Error(err);
-    // });
+  }
+
+  static get(path = ''): Promise<AxiosResponse> {
+    return apiClient.get(path);
   }
 }
