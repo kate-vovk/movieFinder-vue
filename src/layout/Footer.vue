@@ -4,7 +4,7 @@
     <div className="logoContainer">
       <img alt="Vue logo" className="logo" src="../assets/logo.svg" />
     </div>
-    <router-link to="/movies">movies</router-link>
+    <router-link to="/userChat">User Chat</router-link>
   </footer>
 </template>
 

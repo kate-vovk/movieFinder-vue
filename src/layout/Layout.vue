@@ -1,7 +1,9 @@
 <template lang="">
   <div className="layout">
     <NavBar />
-    <router-view />
+    <div style="background-color: blue; overflow: auto; height: 90%">
+      <router-view />
+    </div>
     <AppFooter />
   </div>
 </template>
