@@ -1,0 +1,11 @@
+.moviesPageContainer {
+  height: 100%;
+  display: flex;
+  background-color: white;
+
+  .moviesPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

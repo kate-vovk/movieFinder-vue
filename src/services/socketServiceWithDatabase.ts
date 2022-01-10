@@ -1,7 +1,5 @@
 import { io, Socket } from 'socket.io-client';
 import { store as globalStore } from '@/store';
-// import { IMessage } from '@/interfaces/userChatInterfaces';
-// import { UserChatActionTypes } from '@/store/modules/userChat/action-types';
 
 interface IUserInfo {
   username: string;

@@ -1,5 +1,5 @@
 <template lang="">
-  <div className="container">
+  <div className="userChatContainer">
     <ul>
       <li v-for="(message, i) in messages" :key="i">
         <div v-if="message.type === 'info'">
@@ -42,7 +42,7 @@
 import { defineComponent, watchEffect } from 'vue';
 import SocketioService from '@/services/socketServiceWithDatabase';
 import { store } from '@/store';
-import '@/styles/userChat.scss';
+import '@/styles/views/userChat.scss';
 import { IReceivedMessage } from '@/interfaces/userChatInterfaces';
 
 export default defineComponent({
