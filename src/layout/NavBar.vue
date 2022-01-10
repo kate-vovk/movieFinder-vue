@@ -1,28 +1,39 @@
 <template>
   <header className="navigation">
-    <div className="logoContainer">
+    <div className="logoContainer" @click="goToMainPage">
       <img alt="Vue logo" className="logo" src="../assets/logo.svg" />
     </div>
-    <router-link to="/">Home</router-link>
-    <router-link to="/signin">Signin</router-link>
-    <button @click="logout">Logout</button>
+    <div className="buttonsContainer">
+      <div className="buttonGroup">
+        <button className="leftButton navBarButton">En</button>
+        <button className="rightButton navBarButton">Ru</button>
+      </div>
+      <MenuButton />
+
+      <button @click="goToCart" className="navBarButton">
+        <img src="../assets/shopping_cart_black_24dp.svg" />
+      </button>
+    </div>
   </header>
 </template>
 
 <script lang="ts">
-import '@/styles/header.scss';
+import '@/styles/layout/header.scss';
 import { defineComponent } from 'vue';
-import { mapActions } from 'vuex';
 import { CLIENT_PATHS } from '@/constants/constants';
+import MenuButton from '@/components/MenuButton.vue';
 
-// import { CLIENT_PATHS } from '@/constants/constants';
 export default defineComponent({
   name: 'NavBar',
+  components: {
+    MenuButton,
+  },
   methods: {
-    ...mapActions(['LOG_OUT']),
-    async logout() {
-      await this.LOG_OUT(); // instead of dispatch('LOG_IN')
+    goToCart() {
       this.$router.push(CLIENT_PATHS.signin);
+    },
+    goToMainPage() {
+      this.$router.push(CLIENT_PATHS.main);
     },
   },
 });
