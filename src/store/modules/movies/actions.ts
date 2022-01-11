@@ -1,0 +1,40 @@
+import { ActionContext, ActionTree } from 'vuex';
+import { IMoviesState } from '@/interfaces/movieInterface';
+import { MoviesActionTypes } from './action-types';
+import { getMoviesByQuery } from '@/businessLogic/movies';
+import { Mutations } from './mutations';
+import { MoviesMutationTypes } from './mutation-types';
+import { RootState, store } from '@/store';
+
+// interface IQuery {
+//   selectParam: string;
+//   searchQuery: string;
+//   filters: { [key: string]: string[] };
+// }
+
+type AugmentedActionContext = {
+  commit<K extends keyof Mutations>(
+    key: K,
+    payload?: Parameters<Mutations[K]>[1],
+  ): ReturnType<Mutations[K]>;
+} & Omit<ActionContext<IMoviesState, RootState>, 'commit'>;
+
+export interface Actions {
+  [MoviesActionTypes.GET_MOVIES_BY_QUERY]({
+    commit,
+  }: AugmentedActionContext): // { selectParam, searchQuery, filters }: IQuery,
+  Promise<void>;
+}
+
+export const actions: ActionTree<IMoviesState, RootState> & Actions = {
+  async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
+    { commit }, // { selectParam, searchQuery, filters }: IQuery,
+  ) {
+    const { selectParam, searchQuery, filters } = store.state.movies;
+    console.warn('TODO: store.state.movies', selectParam, searchQuery, filters);
+    // const path = 'countries=USA&production_company=Warner Bros. Pictures';
+    const path = '';
+    const movies = await getMoviesByQuery(path);
+    commit(MoviesMutationTypes.SET_MOVIES, movies);
+  },
+};

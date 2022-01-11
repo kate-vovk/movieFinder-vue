@@ -7,7 +7,6 @@ export const getLoginData = async ({ password, email }: ILoginData): Promise<IAu
     const { data } = await loginAPI({ password, email });
     return data;
   } catch (err: any) {
-    console.error('Error:', err);
     throw new Error(err.message);
   }
 };

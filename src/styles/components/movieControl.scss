@@ -1,0 +1,16 @@
+.movieControlContainer {
+  display: flex;
+  background-color: lightGrey;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0px 0px 10px 10px;
+  transition: 0.3s;
+  .price {
+    padding: 15px 25px;
+    color: red;
+  }
+
+  .favoriteButton {
+    border-radius: 0px 0px 0px 10px;
+  }
+}
