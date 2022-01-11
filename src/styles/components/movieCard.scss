@@ -1,0 +1,33 @@
+.movieCardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.linkToMoviePage {
+  &:hover {
+    cursor: pointer;
+  }
+  .title {
+    text-align: center;
+    height: 45px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .image {
+    width: 150px;
+    height: 200px;
+    margin: auto;
+  }
+
+  .description {
+    text-align: justify;
+    min-height: 100px;
+    margin: 5px;
+  }
+}

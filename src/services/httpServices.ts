@@ -17,5 +17,11 @@ export default class HTTPService {
 
   static get(path = ''): Promise<AxiosResponse> {
     return apiClient.get(path);
+    // .then((response: AxiosResponse) => {
+    //   return response;
+    // })
+    // .catch((err: { response: { status: number }; message: string }) => {
+    //   console.error(err);
+    // });
   }
 }
