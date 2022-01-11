@@ -5,6 +5,7 @@ import { getMoviesByQuery } from '@/businessLogic/movies';
 import { Mutations } from './mutations';
 import { MoviesMutationTypes } from './mutation-types';
 import { RootState, store } from '@/store';
+import { createPath } from '@/utils/url';
 
 // interface IQuery {
 //   selectParam: string;
@@ -35,9 +36,10 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
     const { selectParam, searchQuery, filters } = store.state.movies;
-    console.warn('TODO: store.state.movies', selectParam, searchQuery, filters);
+    console.warn('TODO: store.state.movies', selectParam, searchQuery);
     // const path = 'countries=USA&production_company=Warner Bros. Pictures';
-    const path = '';
+    const path = createPath({ filters, selectParam, searchQuery });
+
     const movies = await getMoviesByQuery(path);
     commit(MoviesMutationTypes.SET_MOVIES, movies);
   },
