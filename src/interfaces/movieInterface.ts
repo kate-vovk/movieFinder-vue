@@ -38,3 +38,8 @@ export interface IMoviesState {
   filters: { [key: string]: string[] };
   status: string;
 }
+
+export interface IFilter {
+  filterParam: string;
+  filterOption: string;
+}

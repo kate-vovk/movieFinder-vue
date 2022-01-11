@@ -17,14 +17,14 @@ import AppPagination from '@/components/Pagination.vue';
 import '@/styles/components/moviesCards.scss';
 
 export default defineComponent({
-  data() {
-    return {
-      movies: store.getters.movieList,
-    };
-  },
   components: {
     MovieCard,
     AppPagination,
+  },
+  computed: {
+    movies() {
+      return store.getters.movieList;
+    },
   },
 });
 </script>

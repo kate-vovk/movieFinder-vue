@@ -5,21 +5,33 @@
       <img :class="{ expandMore: showAccordion }" src="../assets/expand_more_black_24dp.svg" />
     </div>
     <ul class="options" :class="{ optionsShow: showAccordion }">
-      <li v-for="(option, i) in filter.options" :key="i">
-        {{ option }}
-      </li>
+      <form>
+        <li v-for="(option, i) in filter.options" :key="i">
+          <FilterOptions
+            :filterParam="filter.name"
+            :option="option"
+            @setNewOption="setOption"
+            :selectedOption="selectedOption"
+          />
+        </li>
+      </form>
     </ul>
   </div>
 </template>
 <script lang="ts">
 import '@/styles/components/accordion.scss';
 import { defineComponent } from 'vue';
+import FilterOptions from '@/components/FilterOptions.vue';
 
 export default defineComponent({
   name: 'AppAccordion',
+  components: {
+    FilterOptions,
+  },
   data() {
     return {
       showAccordion: false,
+      selectedOption: '',
     };
   },
   props: {
@@ -31,6 +43,9 @@ export default defineComponent({
   methods: {
     toggleOpenAccordion() {
       this.showAccordion = !this.showAccordion;
+    },
+    setOption(selectedOption: string) {
+      this.selectedOption = selectedOption;
     },
   },
 });

@@ -1,5 +1,5 @@
 import { ActionContext, ActionTree } from 'vuex';
-import { IMoviesState } from '@/interfaces/movieInterface';
+import { IMoviesState, IFilter } from '@/interfaces/movieInterface';
 import { MoviesActionTypes } from './action-types';
 import { getMoviesByQuery } from '@/businessLogic/movies';
 import { Mutations } from './mutations';
@@ -24,6 +24,10 @@ export interface Actions {
     commit,
   }: AugmentedActionContext): // { selectParam, searchQuery, filters }: IQuery,
   Promise<void>;
+  [MoviesActionTypes.ADD_FILTER_OPTION](
+    { commit }: AugmentedActionContext,
+    { filterParam, filterOption }: IFilter,
+  ): void;
 }
 
 export const actions: ActionTree<IMoviesState, RootState> & Actions = {
@@ -36,5 +40,8 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     const path = '';
     const movies = await getMoviesByQuery(path);
     commit(MoviesMutationTypes.SET_MOVIES, movies);
+  },
+  [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
+    commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });
   },
 };

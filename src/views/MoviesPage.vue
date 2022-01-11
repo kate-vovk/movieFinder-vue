@@ -13,7 +13,6 @@ import { defineComponent } from 'vue';
 import AppSidebar from '@/components/Sidebar.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import MoviesCards from '@/components/MoviesCards.vue';
-
 import '@/styles/views/moviesPage.scss';
 import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 
@@ -23,8 +22,11 @@ export default defineComponent({
     SearchBar,
     MoviesCards,
   },
-  beforeCreate() {
+  created() {
     this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+    // watchEffect(() => {
+    //   this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+    // });
   },
 });
 </script>
