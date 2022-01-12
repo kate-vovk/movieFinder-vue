@@ -1,6 +1,6 @@
 header {
   background-color: lightBlue;
-
+  top: 0;
   .buttonsContainer {
     margin-left: auto;
     display: flex;
@@ -9,17 +9,20 @@ header {
     .navBarButton {
       background-color: inherit;
       border: 0px;
-      padding: 15px 25px;
+      padding: 10px;
+      box-sizing: border-box;
+      margin: 0 5px;
+      height: 50px;
+      width: 50px;
       &:hover {
         cursor: pointer;
         background-color: rgb(182, 209, 218);
+        // background-color: blue;
+
       }
     }
 
     .buttonGroup {
-      button {
-        padding: 20px 15px;
-      }
       .leftButton {
         // border: 1px solid green; /* Green border */
         // border-right: 0.5px solid grey;
