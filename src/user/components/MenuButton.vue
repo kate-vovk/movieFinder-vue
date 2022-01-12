@@ -1,5 +1,5 @@
 <template lang="">
-  <div @click="toggleOpenMenu" className="navBarButton dropdown">
+  <button @click="toggleOpenMenu" className="navBarButton dropdown">
     <img src="@/assets/account_circle_black_24dp.svg" />
     <ul class="dropdownContent" :class="{ dropdownContentOpen: openMenu }">
       <li v-for="({ name, link }, i) in menuLinks" :key="i" @click="this.$router.push(link)">
@@ -7,7 +7,7 @@
       </li>
       <li @click="logout">Signout</li>
     </ul>
-  </div>
+  </button>
 </template>
 
 <script lang="ts">
