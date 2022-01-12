@@ -36,7 +36,6 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
     const { selectParam, searchQuery, filters } = store.state.movies;
-    console.warn('TODO: store.state.movies', selectParam, searchQuery);
 
     const path = createPath({ filters, selectParam, searchQuery });
 

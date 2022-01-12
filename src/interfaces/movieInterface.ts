@@ -43,3 +43,10 @@ export interface IFilter {
   filterParam: string;
   filterOption: string;
 }
+
+export enum SearchOption {
+  initial = '',
+  movie = 'movie',
+  actor = 'actor',
+  studio = 'studio',
+}
