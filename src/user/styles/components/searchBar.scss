@@ -1,4 +1,7 @@
 .searchBarContainer {
   background-color: lightgrey;
   height: 60px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }

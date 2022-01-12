@@ -1,18 +1,18 @@
 interface ICreatePath {
   filters?: { [key: string]: string[] };
   searchQuery?: string;
-  selectParam?: string;
+  searchParam?: string;
 }
 export const createPath = ({
   filters = {},
-  selectParam = '',
+  searchParam = '',
   searchQuery = '',
 }: ICreatePath): string => {
   const filtersPath = Object.keys(filters).reduce(
     (acc: string, filterParam) => `${acc}&${filterParam}=${filters[filterParam].join(',')}`,
     '',
   );
-  const searchPath = `${selectParam}${searchQuery}`;
+  const searchPath = `${searchParam}${searchQuery}`;
   const finalPath = `${searchPath}&${filtersPath}`;
   return finalPath;
 };

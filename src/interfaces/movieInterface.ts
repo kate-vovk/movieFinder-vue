@@ -34,7 +34,7 @@ export interface IMoviesState {
   movies: IMovie[];
   totalCount: number;
   searchQuery: string;
-  selectParam: string;
+  searchParam: string;
   filters: { [key: string]: string[] };
   status: string;
 }

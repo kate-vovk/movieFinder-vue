@@ -29,20 +29,27 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     { filterParam, filterOption }: IFilter,
   ): void;
+  [MoviesActionTypes.SET_SEARCH_QUERY](
+    { commit }: AugmentedActionContext,
+    { searchQuery }: { searchQuery: string },
+  ): void;
 }
 
 export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
-    const { selectParam, searchQuery, filters } = store.state.movies;
+    const { searchParam, searchQuery, filters } = store.state.movies;
 
-    const path = createPath({ filters, selectParam, searchQuery });
+    const path = createPath({ filters, searchParam, searchQuery });
 
     const movies = await getMoviesByQuery(path);
     commit(MoviesMutationTypes.SET_MOVIES, movies);
   },
   [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
     commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });
+  },
+  [MoviesActionTypes.SET_SEARCH_QUERY]({ commit }, { searchQuery }: { searchQuery: string }) {
+    commit(MoviesMutationTypes.SET_SEARCH_QUERY, { searchQuery });
   },
 };

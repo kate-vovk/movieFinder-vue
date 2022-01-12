@@ -1,5 +1,5 @@
 <template lang="">
-  <select v-model="selectParam">
+  <select v-model="selectedParam">
     <option v-for="(option, i) in searchOptions" :key="i">{{ option }}</option>
   </select>
 </template>
@@ -9,10 +9,9 @@ import { SearchOption } from '@/interfaces/movieInterface';
 export default {
   data() {
     return {
-      selectParam: '',
+      selectedParam: '',
       searchOptions: Object.values(SearchOption),
     };
   },
 };
 </script>
-<style lang=""></style>

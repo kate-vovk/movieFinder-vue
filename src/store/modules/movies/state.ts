@@ -5,7 +5,7 @@ export const state: IMoviesState = {
   movies: [],
   totalCount: 0,
   searchQuery: '',
-  selectParam: 'initial',
+  searchParam: 'initial',
   filters: {},
   status: DataStatus.initial,
 };

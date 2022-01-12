@@ -5,6 +5,7 @@ import { MoviesMutationTypes } from './mutation-types';
 export type Mutations<S = IMoviesState> = {
   [MoviesMutationTypes.SET_MOVIES](state: S, payload: IGetMovies): void;
   [MoviesMutationTypes.SET_FILTERS](state: S, payload: IFilter): void;
+  [MoviesMutationTypes.SET_SEARCH_QUERY](state: S, payload: { searchQuery: string }): void;
 };
 export const mutations: MutationTree<IMoviesState> & Mutations = {
   [MoviesMutationTypes.SET_MOVIES](state: IMoviesState, { results, total }: IGetMovies) {
@@ -19,5 +20,11 @@ export const mutations: MutationTree<IMoviesState> & Mutations = {
     } else {
       state.filters[filterParam] = [filterOption];
     }
+  },
+  [MoviesMutationTypes.SET_SEARCH_QUERY](
+    state: IMoviesState,
+    { searchQuery }: { searchQuery: string },
+  ) {
+    state.searchQuery = searchQuery;
   },
 };
