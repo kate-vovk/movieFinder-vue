@@ -24,9 +24,9 @@
 import { mapActions } from 'vuex';
 import { defineComponent, watchEffect } from 'vue';
 
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/user/constants/constants';
 import { useStore } from '@/store';
-import '@/styles/components/loginForm.scss';
+import '@/user/styles/components/loginForm.scss';
 
 export default defineComponent({
   name: 'SignInForm',

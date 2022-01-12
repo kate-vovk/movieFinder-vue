@@ -1,4 +1,4 @@
-import { getMoviesFromApi } from '@/api/movies';
+import { getMoviesFromApi } from '@/user/api/movies';
 import { IGetMovies } from '@/interfaces/movieInterface';
 
 export const getMoviesByQuery = async (path: string): Promise<IGetMovies> => {

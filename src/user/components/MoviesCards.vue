@@ -12,9 +12,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { store } from '@/store';
-import MovieCard from '@/components/MovieCard.vue';
-import AppPagination from '@/components/Pagination.vue';
-import '@/styles/components/moviesCards.scss';
+import MovieCard from '@/user/components/MovieCard.vue';
+import AppPagination from '@/user/components/Pagination.vue';
+import '@/user/styles/components/moviesCards.scss';
 
 export default defineComponent({
   components: {

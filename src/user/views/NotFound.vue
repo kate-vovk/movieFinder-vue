@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/user/constants/constants';
 
 export default defineComponent({
   methods: {

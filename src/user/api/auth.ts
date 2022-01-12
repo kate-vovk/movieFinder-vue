@@ -1,5 +1,5 @@
 import { AxiosPromise, AxiosResponse } from 'axios';
-import { SERVER_PATHS } from '@/constants/constants';
+import { SERVER_PATHS } from '@/user/constants/constants';
 import HTTPService from '@/services/httpServices';
 import { ILoginData } from '@/interfaces/authInterfaces';
 

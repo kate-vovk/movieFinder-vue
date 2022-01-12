@@ -1,4 +1,4 @@
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/user/constants/constants';
 
 export interface IUserMenuLinks {
   link: string;

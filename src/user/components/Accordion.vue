@@ -2,7 +2,7 @@
   <div className="accordionContainer">
     <div @click="toggleOpenAccordion" className="accordion">
       {{ filter.name }}
-      <img :class="{ expandMore: showAccordion }" src="../assets/expand_more_black_24dp.svg" />
+      <img :class="{ expandMore: showAccordion }" src="@/assets/expand_more_black_24dp.svg" />
     </div>
     <ul class="options" :class="{ optionsShow: showAccordion }">
       <form>
@@ -19,9 +19,9 @@
   </div>
 </template>
 <script lang="ts">
-import '@/styles/components/accordion.scss';
+import '@/user/styles/components/accordion.scss';
 import { defineComponent } from 'vue';
-import FilterOptions from '@/components/FilterOptions.vue';
+import FilterOptions from '@/user/components/FilterOptions.vue';
 
 export default defineComponent({
   name: 'AppAccordion',

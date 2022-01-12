@@ -42,7 +42,7 @@
 import { defineComponent, watchEffect } from 'vue';
 import SocketioService from '@/services/socketServiceWithDatabase';
 import { store } from '@/store';
-import '@/styles/views/userChat.scss';
+import '@/user/styles/views/userChat.scss';
 import { IReceivedMessage } from '@/interfaces/userChatInterfaces';
 
 export default defineComponent({

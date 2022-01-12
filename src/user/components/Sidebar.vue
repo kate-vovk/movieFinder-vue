@@ -9,10 +9,10 @@
   </div>
 </template>
 <script lang="ts">
-import '@/styles/components/sidebar.scss';
+import '@/user/styles/components/sidebar.scss';
 import { defineComponent } from 'vue';
-import { sidebarFilterNamesFields } from '@/constants/sidebarFilterNamesFields';
-import AppAccordion from '@/components/Accordion.vue';
+import { sidebarFilterNamesFields } from '@/user/constants/sidebarFilterNamesFields';
+import AppAccordion from '@/user/components/Accordion.vue';
 import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 
 export default defineComponent({

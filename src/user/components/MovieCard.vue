@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import '@/styles/components/movieCard.scss';
-import MovieControl from '@/components/MovieControl.vue';
+import '@/user/styles/components/movieCard.scss';
+import MovieControl from '@/user/components/MovieControl.vue';
 
 export default defineComponent({
   props: {

@@ -1,7 +1,7 @@
 import { ActionContext, ActionTree } from 'vuex';
 import { IMoviesState, IFilter } from '@/interfaces/movieInterface';
 import { MoviesActionTypes } from './action-types';
-import { getMoviesByQuery } from '@/businessLogic/movies';
+import { getMoviesByQuery } from '@/user/businessLogic/movies';
 import { Mutations } from './mutations';
 import { MoviesMutationTypes } from './mutation-types';
 import { RootState, store } from '@/store';

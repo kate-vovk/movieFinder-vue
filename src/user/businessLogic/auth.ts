@@ -1,6 +1,6 @@
 import { AxiosPromise } from 'axios';
 import { ILoginData, IAuth } from '@/interfaces/authInterfaces';
-import { loginAPI, logoutAPI } from '@/api/auth';
+import { loginAPI, logoutAPI } from '@/user/api/auth';
 
 export const getLoginData = async ({ password, email }: ILoginData): Promise<IAuth> => {
   try {

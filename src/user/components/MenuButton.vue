@@ -1,6 +1,6 @@
 <template lang="">
   <div @click="toggleOpenMenu" className="navBarButton dropdown">
-    <img src="../assets/account_circle_black_24dp.svg" />
+    <img src="@/assets/account_circle_black_24dp.svg" />
     <ul class="dropdownContent" :class="{ dropdownContentOpen: openMenu }">
       <li v-for="({ name, link }, i) in menuLinks" :key="i" @click="this.$router.push(link)">
         {{ name }}
@@ -13,9 +13,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapActions } from 'vuex';
-import { CLIENT_PATHS } from '@/constants/constants';
-import '@/styles/components/menuButton.scss';
-import { userMenuLinks } from '@/constants/navBarMenuButton';
+import { CLIENT_PATHS } from '@/user/constants/constants';
+import '@/user/styles/components/menuButton.scss';
+import { userMenuLinks } from '@/user/constants/navBarMenuButton';
 
 export default defineComponent({
   data() {

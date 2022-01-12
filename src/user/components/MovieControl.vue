@@ -1,17 +1,17 @@
 <template lang="">
   <div className="movieControlContainer">
     <button className="customButton favoriteButton">
-      <img src="../assets/star_black_24dp.svg" />
+      <img src="@/assets/star_black_24dp.svg" />
     </button>
     <button className="customButton">
-      <img src="../assets/shopping_cart_black_24dp.svg" />
+      <img src="@/assets/shopping_cart_black_24dp.svg" />
     </button>
     <div className="price">{{ price }} $</div>
   </div>
 </template>
 <script lang="ts">
-import '@/styles/components/customButton.scss';
-import '@/styles/components/movieControl.scss';
+import '@/user/styles/components/customButton.scss';
+import '@/user/styles/components/movieControl.scss';
 
 export default {
   props: {

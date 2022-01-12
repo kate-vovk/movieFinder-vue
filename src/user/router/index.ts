@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { CLIENT_PATHS } from '@/constants/constants';
-import SignInForm from '@/views/SignInForm.vue';
-import MoviesPage from '@/views/MoviesPage.vue';
-import UserChat from '@/views/UserChat.vue';
-import NotFound from '@/views/NotFound.vue';
+import { CLIENT_PATHS } from '@/user/constants/constants';
+import SignInForm from '@/user/views/SignInForm.vue';
+import MoviesPage from '@/user/views/MoviesPage.vue';
+import UserChat from '@/user/views/UserChat.vue';
+import NotFound from '@/user/views/NotFound.vue';
 
 import { store } from '@/store';
 

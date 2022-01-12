@@ -1,7 +1,7 @@
 <template>
   <header className="navigation">
     <div className="logoContainer" @click="goToMainPage">
-      <img alt="Vue logo" className="logo" src="../assets/logo.svg" />
+      <img alt="Vue logo" className="logo" src="@/assets/logo.svg" />
     </div>
     <div className="buttonsContainer">
       <div className="buttonGroup">
@@ -11,7 +11,7 @@
       <MenuButton />
 
       <button @click="goToCart" className="navBarButton">
-        <img src="../assets/shopping_cart_black_24dp.svg" />
+        <img src="@/assets/shopping_cart_black_24dp.svg" />
       </button>
     </div>
   </header>
@@ -20,8 +20,8 @@
 <script lang="ts">
 import '@/styles/layout/header.scss';
 import { defineComponent } from 'vue';
-import { CLIENT_PATHS } from '@/constants/constants';
-import MenuButton from '@/components/MenuButton.vue';
+import { CLIENT_PATHS } from '@/user/constants/constants';
+import MenuButton from '@/user/components/MenuButton.vue';
 
 export default defineComponent({
   name: 'NavBar',
