@@ -37,7 +37,7 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   ) {
     const { selectParam, searchQuery, filters } = store.state.movies;
     console.warn('TODO: store.state.movies', selectParam, searchQuery);
-    // const path = 'countries=USA&production_company=Warner Bros. Pictures';
+
     const path = createPath({ filters, selectParam, searchQuery });
 
     const movies = await getMoviesByQuery(path);

@@ -24,9 +24,6 @@ export default defineComponent({
   },
   created() {
     this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
-    // watchEffect(() => {
-    //   this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
-    // });
   },
 });
 </script>
