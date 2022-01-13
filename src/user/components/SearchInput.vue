@@ -1,12 +1,11 @@
 <template lang="">
-  <!-- <div className="searchInputContainer"> -->
   <input
-    className="searchInputContainer"
+    class="searchInputContainer"
+    :class="{ defaultText: !searchQuery }"
     type="text"
     @input="setSearchQuery"
     placeholder="search"
   />
-  <!-- </div> -->
 </template>
 
 <script lang="ts">

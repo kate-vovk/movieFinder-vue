@@ -45,7 +45,7 @@ export interface IFilter {
 }
 
 export enum SearchOption {
-  initial = '',
+  initial = 'initial',
   movie = 'movie',
   actor = 'actor',
   studio = 'studio',

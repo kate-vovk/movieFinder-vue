@@ -30,14 +30,15 @@ export interface Actions {
     { filterParam, filterOption }: IFilter,
   ): void;
   [MoviesActionTypes.SET_SEARCH_QUERY](
-    { commit }: AugmentedActionContext,
+    { commit, dispatch }: AugmentedActionContext,
     { searchQuery }: { searchQuery: string },
   ): void;
   [MoviesActionTypes.SET_SEARCH_PARAM](
-    { commit }: AugmentedActionContext,
+    { commit, dispatch }: AugmentedActionContext,
     { searchParam }: { searchParam: string },
   ): void;
 }
+// const { searchParam, searchQuery, filters } = store.state.movies;
 
 export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
@@ -47,16 +48,36 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
 
     const path = createPath({ filters, searchParam, searchQuery });
 
-    const movies = await getMoviesByQuery(path);
-    commit(MoviesMutationTypes.SET_MOVIES, movies);
+    const moviesByQuery = await getMoviesByQuery(path);
+    console.warn('GET Movies', searchParam, searchQuery);
+    commit(MoviesMutationTypes.SET_MOVIES, moviesByQuery);
   },
+
   [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
     commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });
   },
-  [MoviesActionTypes.SET_SEARCH_QUERY]({ commit }, { searchQuery }: { searchQuery: string }) {
-    commit(MoviesMutationTypes.SET_SEARCH_QUERY, { searchQuery });
+
+  [MoviesActionTypes.SET_SEARCH_QUERY]({ commit, dispatch }, payload: { searchQuery: string }) {
+    const { searchParam } = store.state.movies;
+
+    commit(MoviesMutationTypes.SET_SEARCH_QUERY, { searchQuery: payload.searchQuery });
+
+    if (!searchParam) {
+      dispatch(MoviesActionTypes.SET_SEARCH_PARAM, { searchParam: 'initial' });
+    }
+    dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
-  [MoviesActionTypes.SET_SEARCH_PARAM]({ commit }, { searchParam }: { searchParam: string }) {
-    commit(MoviesMutationTypes.SET_SEARCH_PARAM, { searchParam });
+  [MoviesActionTypes.SET_SEARCH_PARAM]({ commit, dispatch }, payload: { searchParam: string }) {
+    const { searchQuery } = store.state.movies;
+
+    commit(MoviesMutationTypes.SET_SEARCH_PARAM, { searchParam: payload.searchParam });
+
+    if (!payload.searchParam) {
+      commit(MoviesMutationTypes.SET_SEARCH_PARAM, { searchParam: 'initial' });
+    }
+    // if searchQuery is not empty
+    if (searchQuery) {
+      dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+    }
   },
 };
