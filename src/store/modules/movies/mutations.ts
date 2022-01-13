@@ -7,6 +7,8 @@ export type Mutations<S = IMoviesState> = {
   [MoviesMutationTypes.SET_FILTERS](state: S, payload: IFilter): void;
   [MoviesMutationTypes.SET_SEARCH_QUERY](state: S, payload: { searchQuery: string }): void;
   [MoviesMutationTypes.SET_SEARCH_PARAM](state: S, payload: { searchParam: string }): void;
+  [MoviesMutationTypes.SET_CURRENT_PAGE](state: S, payload: { currentPage: number }): void;
+  [MoviesMutationTypes.SET_MOVIES_PER_PAGE](state: S, payload: { moviesPerPage: number }): void;
 };
 export const mutations: MutationTree<IMoviesState> & Mutations = {
   [MoviesMutationTypes.SET_MOVIES](state: IMoviesState, { results, total }: IGetMovies) {
@@ -33,5 +35,17 @@ export const mutations: MutationTree<IMoviesState> & Mutations = {
     { searchParam }: { searchParam: string },
   ) {
     state.searchParam = searchParam;
+  },
+  [MoviesMutationTypes.SET_CURRENT_PAGE](
+    state: IMoviesState,
+    { currentPage }: { currentPage: number },
+  ) {
+    state.currentPage = currentPage;
+  },
+  [MoviesMutationTypes.SET_MOVIES_PER_PAGE](
+    state: IMoviesState,
+    { moviesPerPage }: { moviesPerPage: number },
+  ) {
+    state.moviesPerPage = moviesPerPage;
   },
 };

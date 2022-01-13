@@ -37,6 +37,14 @@ export interface Actions {
     { commit, dispatch }: AugmentedActionContext,
     { searchParam }: { searchParam: string },
   ): void;
+  [MoviesActionTypes.SET_CURRENT_PAGE](
+    { commit }: AugmentedActionContext,
+    { pageValue }: { pageValue: number },
+  ): void;
+  [MoviesActionTypes.SET_MOVIES_PER_PAGE](
+    { commit }: AugmentedActionContext,
+    { moviesPerPage }: { moviesPerPage: number },
+  ): void;
 }
 // const { searchParam, searchQuery, filters } = store.state.movies;
 
@@ -44,9 +52,9 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
-    const { searchParam, searchQuery, filters } = store.state.movies;
+    const { searchParam, searchQuery, filters, currentPage, moviesPerPage } = store.state.movies;
 
-    const path = createPath({ filters, searchParam, searchQuery });
+    const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
 
     const moviesByQuery = await getMoviesByQuery(path);
     console.warn('GET Movies', searchParam, searchQuery);
@@ -65,8 +73,10 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     if (!searchParam) {
       dispatch(MoviesActionTypes.SET_SEARCH_PARAM, { searchParam: 'initial' });
     }
+    dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: 0 });
     dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
+
   [MoviesActionTypes.SET_SEARCH_PARAM]({ commit, dispatch }, payload: { searchParam: string }) {
     const { searchQuery } = store.state.movies;
 
@@ -77,7 +87,20 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     }
     // if searchQuery is not empty
     if (searchQuery) {
+      dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: 0 });
       dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
     }
+  },
+
+  [MoviesActionTypes.SET_CURRENT_PAGE]({ commit, dispatch }, { pageValue }: { pageValue: number }) {
+    commit(MoviesMutationTypes.SET_CURRENT_PAGE, { currentPage: pageValue });
+    dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+  },
+  [MoviesActionTypes.SET_MOVIES_PER_PAGE](
+    { commit, dispatch },
+    { moviesPerPage }: { moviesPerPage: number },
+  ) {
+    commit(MoviesMutationTypes.SET_MOVIES_PER_PAGE, { moviesPerPage });
+    dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
 };

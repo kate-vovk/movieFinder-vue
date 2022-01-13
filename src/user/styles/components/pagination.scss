@@ -1,3 +1,40 @@
 .paginationContainer {
   background-color: lightgrey;
+  height: 50px;
+  position: relative;
+
+  .prevPageButton {
+    box-sizing: border-box;
+    position: relative;
+    img {
+      box-sizing: border-box;
+      color: grey;
+    }
+  }
+  .nextPageButton {
+    transform: rotate(180deg);
+  }
+
+  .itemPerPageContainer {
+    width: 10px;
+    position: absolute;
+    top: 2px;
+    box-sizing: border-box;
+    background-color: aquamarine;
+  }
+
+  .options {
+    display: none;
+    background-color: white;
+    padding: 0px;
+
+    z-index: 1;
+    margin-top: -160px;
+    border-top: 0px;
+    border-radius: 0px 0px 5px 5px;
+  }
+  .optionsShow {
+    display: block;
+    box-shadow: 0 -2px 1px 1px rgba(0, 0, 0, 0.2);
+  }
 }

@@ -27,6 +27,7 @@ export default defineComponent({
   },
   methods: {
     filterMovies() {
+      this.$store.dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: 0 });
       this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
     },
   },

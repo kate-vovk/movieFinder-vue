@@ -40,6 +40,7 @@ export default defineComponent({
     selectSearchParam(event: { currentTarget: { innerHTML: string } }) {
       this.selectedParam = event.currentTarget.innerHTML;
       store.dispatch(MoviesActionTypes.SET_SEARCH_PARAM, { searchParam: this.selectedParam });
+      this.toggleOpenAccordion();
     },
   },
 });

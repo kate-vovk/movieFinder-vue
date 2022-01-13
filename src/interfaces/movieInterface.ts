@@ -33,6 +33,8 @@ export interface IGetMovies {
 export interface IMoviesState {
   movies: IMovie[];
   totalCount: number;
+  currentPage: number;
+  moviesPerPage: number;
   searchQuery: string;
   searchParam: string;
   filters: { [key: string]: string[] };
