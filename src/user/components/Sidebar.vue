@@ -12,7 +12,7 @@
 import '@/user/styles/components/sidebar.scss';
 import { defineComponent } from 'vue';
 import { sidebarFilterNamesFields } from '@/user/constants/sidebarFilterNamesFields';
-import AppAccordion from '@/user/components/Accordion.vue';
+import AppAccordion from '@/user/components/FilterAccordion.vue';
 import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 
 export default defineComponent({

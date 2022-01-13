@@ -33,6 +33,10 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     { searchQuery }: { searchQuery: string },
   ): void;
+  [MoviesActionTypes.SET_SEARCH_PARAM](
+    { commit }: AugmentedActionContext,
+    { searchParam }: { searchParam: string },
+  ): void;
 }
 
 export const actions: ActionTree<IMoviesState, RootState> & Actions = {
@@ -51,5 +55,8 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   },
   [MoviesActionTypes.SET_SEARCH_QUERY]({ commit }, { searchQuery }: { searchQuery: string }) {
     commit(MoviesMutationTypes.SET_SEARCH_QUERY, { searchQuery });
+  },
+  [MoviesActionTypes.SET_SEARCH_PARAM]({ commit }, { searchParam }: { searchParam: string }) {
+    commit(MoviesMutationTypes.SET_SEARCH_PARAM, { searchParam });
   },
 };

@@ -1,7 +1,23 @@
 .searchBarContainer {
   background-color: lightgrey;
-  height: 60px;
+  min-height: 50px;
   display: flex;
   justify-content: end;
   align-items: center;
+  position: relative;
+
+  .searchInputContainer {
+    margin-right: 205px;
+    height: 40px;
+    background-color: white;
+    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 5px;
+    min-width: 200px;
+  }
+  .searchSelectContainer {
+    position: absolute;
+    top: 2px;
+    box-sizing: border-box;
+  }
 }

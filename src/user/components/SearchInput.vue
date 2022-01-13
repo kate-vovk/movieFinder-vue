@@ -1,7 +1,12 @@
 <template lang="">
-  <div>
-    <input type="text" @input="setSearchQuery" placeholder="search" />
-  </div>
+  <!-- <div className="searchInputContainer"> -->
+  <input
+    className="searchInputContainer"
+    type="text"
+    @input="setSearchQuery"
+    placeholder="search"
+  />
+  <!-- </div> -->
 </template>
 
 <script lang="ts">
@@ -30,5 +35,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang=""></style>
