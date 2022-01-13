@@ -2,15 +2,20 @@
   background-color: white;
   box-sizing: border-box;
   height: 100%;
-
+  width: 100%;
   .logoContainer {
-    height: 50px;
+    height: 100%;
+    width: 150px;
+    position: relative;
     &:hover {
       cursor: pointer;
     }
   }
   .logo {
-    width: 100%;
+    width: inherit;
+    position: absolute;
+    top:10%;
+    left:0px;
   }
   .navigation {
     position: fixed;
@@ -22,14 +27,14 @@
     align-items: center;
     justify-content: space-between;
   }
-  @media screen and (max-width: 600px) {
-    .logoContainer {
-      width: 110px;
-    }
-  }
-  @media screen and (min-width: 1000px) {
-    .logoContainer {
-      width: 200px;
-    }
-  }
+  // @media screen and (max-width: 600px) {
+  //   .logoContainer {
+  //     width: 110px;
+  //   }
+  // }
+  // @media screen and (min-width: 1000px) {
+  //   .logoContainer {
+  //     width: 170px;
+  //   }
+  // }
 }

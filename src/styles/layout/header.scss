@@ -5,30 +5,23 @@ header {
     margin-left: auto;
     display: flex;
     flex-direction: row;
-
+    gap: 5px;
     .navBarButton {
       background-color: inherit;
       border: 0px;
-      padding: 10px;
       box-sizing: border-box;
-      margin: 0 5px;
       height: 50px;
       width: 50px;
       &:hover {
         cursor: pointer;
         background-color: rgb(182, 209, 218);
-        // background-color: blue;
-
       }
     }
 
     .buttonGroup {
       .leftButton {
-        // border: 1px solid green; /* Green border */
-        // border-right: 0.5px solid grey;
       }
       .rightButton {
-        // border: 1px solid green; /* Green border */
         border-left: 1px solid grey;
       }
     }
