@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import AppLayout from './layout/Layout.vue';
+import AppLayout from '@/sharedComponents/layout/Layout.vue';
 import './reset.css';
 
 export default {
