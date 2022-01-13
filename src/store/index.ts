@@ -23,7 +23,7 @@ export const store = createStore({
     userChat,
     movies,
   },
-  plugins: [createPersistedState({ paths: ['auth', 'movies'] })],
+  plugins: [createPersistedState({ paths: ['auth'] })],
 });
 
 export function useStore(): Store {

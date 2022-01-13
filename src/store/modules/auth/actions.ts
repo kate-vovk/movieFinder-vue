@@ -3,7 +3,7 @@ import { IAuth, ILoginData } from '@/interfaces/authInterfaces';
 import { RootState } from '@/store';
 import { Mutations } from './mutations';
 import { AuthActionTypes } from './action-types';
-import { getLoginData, logoutUser } from '@/businessLogic/auth';
+import { getLoginData, logoutUser } from '@/user/businessLogic/auth';
 import { AuthMutationTypes } from './auth-types';
 
 type AugmentedActionContext = {
