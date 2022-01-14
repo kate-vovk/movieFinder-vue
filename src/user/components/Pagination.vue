@@ -1,15 +1,14 @@
 <template lang="">
   <div className="paginationContainer">
-    <div style="display: flex; height: inherit">
+    <div className="paginationElementsContainer">
       <div className="itemPerPageContainer">
         <div className="textContainer">Items per page:</div>
-        <div className="invisibleContainer"></div>
-        <div class="accordionContainer itemPerPageOptions">
-          <div @click="toggleOpenAccordion" class="accordion">
+        <div class="selectContainer itemPerPageOptions">
+          <div @click="toggleOpenSelect" class="select">
             {{ moviesPerPage }}
-            <img :class="{ expandMore: showAccordion }" src="@/assets/expand_more_black_24dp.svg" />
+            <img :class="{ expandMore: showSelect }" src="@/assets/expand_more_black_24dp.svg" />
           </div>
-          <ul class="options" :class="{ optionsShow: showAccordion }">
+          <ul class="options" :class="{ optionsShow: showSelect }">
             <li
               @click="selectMoviesPerPageAmount"
               v-for="(option, i) in moviesPerPageOptions"
@@ -49,13 +48,13 @@ import { store } from '@/store';
 import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 import '@/user/styles/components/pagination.scss';
 import { moviesPerPageOptions } from '@/utils/paginationData';
-import '@/user/styles/components/accordion.scss';
+import '@/user/styles/components/select.scss';
 
 export default defineComponent({
   name: 'AppPagination',
   data() {
     return {
-      showAccordion: false,
+      showSelect: false,
       moviesPerPageOptions,
     };
   },
@@ -71,8 +70,8 @@ export default defineComponent({
     },
   },
   methods: {
-    toggleOpenAccordion() {
-      this.showAccordion = !this.showAccordion;
+    toggleOpenSelect() {
+      this.showSelect = !this.showSelect;
     },
     prevPage() {
       store.dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: this.pageValue - 1 });
@@ -84,7 +83,7 @@ export default defineComponent({
       store.dispatch(MoviesActionTypes.SET_MOVIES_PER_PAGE, {
         moviesPerPage: Number(event.currentTarget.innerHTML),
       });
-      this.toggleOpenAccordion();
+      this.toggleOpenSelect();
     },
   },
 });
