@@ -6,7 +6,7 @@ import { Mutations } from './mutations';
 import { MoviesMutationTypes } from './mutation-types';
 import { RootState, store } from '@/store';
 import { createPath } from '@/utils/url';
-import { state } from './state';
+import { initialState } from './state';
 
 // interface IQuery {
 //   selectParam: string;
@@ -48,7 +48,6 @@ export interface Actions {
   ): void;
   [MoviesActionTypes.CLEAR_MOVIES_STATE]({ commit }: AugmentedActionContext): void;
 }
-// const { searchParam, searchQuery, filters } = store.state.movies;
 
 export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
@@ -105,8 +104,7 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
   [MoviesActionTypes.CLEAR_MOVIES_STATE]({ commit }) {
-    const initialState = state;
-    // console.warn('initialState', initialState);
+    console.warn('moviesState', initialState);
     commit(MoviesMutationTypes.SET_INITIAL_STATE, initialState);
   },
 };

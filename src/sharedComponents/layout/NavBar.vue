@@ -22,6 +22,8 @@ import '@/styles/layout/header.scss';
 import { defineComponent } from 'vue';
 import { CLIENT_PATHS } from '@/user/constants/constants';
 import MenuButton from '@/user/components/MenuButton.vue';
+import { store } from '@/store';
+import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 
 export default defineComponent({
   name: 'NavBar',
@@ -33,6 +35,7 @@ export default defineComponent({
       this.$router.push(CLIENT_PATHS.signin);
     },
     goToMainPage() {
+      store.dispatch(MoviesActionTypes.CLEAR_MOVIES_STATE);
       this.$router.push(CLIENT_PATHS.main);
     },
   },

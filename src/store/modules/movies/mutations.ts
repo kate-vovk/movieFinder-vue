@@ -51,5 +51,13 @@ export const mutations: MutationTree<IMoviesState> & Mutations = {
   },
   [MoviesMutationTypes.SET_INITIAL_STATE](state: IMoviesState, initialState: IMoviesState) {
     console.warn('initialState', initialState);
+    state.totalCount = initialState.totalCount;
+    state.currentPage = initialState.currentPage;
+    state.moviesPerPage = initialState.moviesPerPage;
+    state.searchQuery = initialState.searchQuery;
+    state.searchParam = initialState.searchParam;
+    state.filters = initialState.filters;
+    state.status = initialState.status;
+    console.warn('state', state);
   },
 };
