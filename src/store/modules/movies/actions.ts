@@ -104,4 +104,7 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     commit(MoviesMutationTypes.SET_MOVIES_PER_PAGE, { moviesPerPage });
     dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
+  [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
+    commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });
+  },
 };
