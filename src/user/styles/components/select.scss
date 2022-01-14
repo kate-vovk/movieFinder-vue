@@ -1,7 +1,9 @@
-.accordionContainer {
+.selectContainer {
   min-width: 40px;
+  position: relative;
+  width: 200px;
 
-  .accordion {
+  .select {
     cursor: pointer;
     background-color: white;
     padding: 10px;
@@ -17,14 +19,15 @@
       transform: rotate(180deg);
     }
   }
-  .accordionShadow {
+  .selectShadow {
     box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2);
   }
   .options {
     display: none;
     background-color: white;
     padding: 0px;
-
+    position: absolute;
+    width: inherit;
     z-index: 1;
     margin-top: -10px;
     border-top: 0px;

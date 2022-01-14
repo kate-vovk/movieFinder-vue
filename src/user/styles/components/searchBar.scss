@@ -7,14 +7,14 @@
   position: relative;
   font-size: medium;
   color: black;
-  padding-right: 15px;
+  padding-right: 10px;
+  gap: 5px;
 
   .defaultText {
     text-transform: none;
     color: grey;
   }
   .searchInputContainer {
-    margin-right: 205px;
     height: 45px;
     background-color: white;
     box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2);
@@ -23,15 +23,10 @@
     min-width: 200px;
     font-size: inherit;
     padding-left: 5px;
-    padding-bottom: 5px;
     box-sizing: border-box;
   }
   .searchSelectContainer {
-    position: absolute;
-    top: 2px;
     box-sizing: border-box;
-  }
-  .searchSelectText {
-    width: 150px;
+    width: 200px;
   }
 }
