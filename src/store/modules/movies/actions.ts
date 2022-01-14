@@ -6,6 +6,7 @@ import { Mutations } from './mutations';
 import { MoviesMutationTypes } from './mutation-types';
 import { RootState, store } from '@/store';
 import { createPath } from '@/utils/url';
+import { state } from './state';
 
 // interface IQuery {
 //   selectParam: string;
@@ -45,6 +46,7 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     { moviesPerPage }: { moviesPerPage: number },
   ): void;
+  [MoviesActionTypes.CLEAR_MOVIES_STATE]({ commit }: AugmentedActionContext): void;
 }
 // const { searchParam, searchQuery, filters } = store.state.movies;
 
@@ -57,7 +59,6 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
 
     const moviesByQuery = await getMoviesByQuery(path);
-    console.warn('GET Movies', searchParam, searchQuery);
     commit(MoviesMutationTypes.SET_MOVIES, moviesByQuery);
   },
 
@@ -100,8 +101,12 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     { commit, dispatch },
     { moviesPerPage }: { moviesPerPage: number },
   ) {
-    console.warn('moviesPerPage', moviesPerPage);
     commit(MoviesMutationTypes.SET_MOVIES_PER_PAGE, { moviesPerPage });
     dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+  },
+  [MoviesActionTypes.CLEAR_MOVIES_STATE]({ commit }) {
+    const initialState = state;
+    // console.warn('initialState', initialState);
+    commit(MoviesMutationTypes.SET_INITIAL_STATE, initialState);
   },
 };

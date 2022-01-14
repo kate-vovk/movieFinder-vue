@@ -9,6 +9,7 @@ export type Mutations<S = IMoviesState> = {
   [MoviesMutationTypes.SET_SEARCH_PARAM](state: S, payload: { searchParam: string }): void;
   [MoviesMutationTypes.SET_CURRENT_PAGE](state: S, payload: { currentPage: number }): void;
   [MoviesMutationTypes.SET_MOVIES_PER_PAGE](state: S, payload: { moviesPerPage: number }): void;
+  [MoviesMutationTypes.SET_INITIAL_STATE](state: S, payload: IMoviesState): void;
 };
 export const mutations: MutationTree<IMoviesState> & Mutations = {
   [MoviesMutationTypes.SET_MOVIES](state: IMoviesState, { results, total }: IGetMovies) {
@@ -47,5 +48,8 @@ export const mutations: MutationTree<IMoviesState> & Mutations = {
     { moviesPerPage }: { moviesPerPage: number },
   ) {
     state.moviesPerPage = moviesPerPage;
+  },
+  [MoviesMutationTypes.SET_INITIAL_STATE](state: IMoviesState, initialState: IMoviesState) {
+    console.warn('initialState', initialState);
   },
 };
