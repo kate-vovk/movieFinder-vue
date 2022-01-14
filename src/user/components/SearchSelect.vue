@@ -2,7 +2,7 @@
   <div class="accordionContainer searchSelectContainer">
     <div
       @click="toggleOpenAccordion"
-      class="accordion searchSelectText"
+      class="accordion accordionShadow searchSelectText"
       :class="{ defaultText: !selectedParam }"
     >
       {{ selectedParam || 'select option' }}

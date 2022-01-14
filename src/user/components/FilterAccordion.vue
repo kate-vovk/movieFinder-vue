@@ -1,6 +1,6 @@
 <template lang="">
   <div className="accordionContainer">
-    <div @click="toggleOpenAccordion" className="accordion">
+    <div @click="toggleOpenAccordion" className="accordion accordionShadow">
       {{ filter.name }}
       <img :class="{ expandMore: showAccordion }" src="@/assets/expand_more_black_24dp.svg" />
     </div>

@@ -100,6 +100,7 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     { commit, dispatch },
     { moviesPerPage }: { moviesPerPage: number },
   ) {
+    console.warn('moviesPerPage', moviesPerPage);
     commit(MoviesMutationTypes.SET_MOVIES_PER_PAGE, { moviesPerPage });
     dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },

@@ -10,13 +10,15 @@
     z-index: 1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     text-transform: capitalize;
-
-    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2);
 
     .expandMore {
       transform: rotate(180deg);
     }
+  }
+  .accordionShadow {
+    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2);
   }
   .options {
     display: none;
