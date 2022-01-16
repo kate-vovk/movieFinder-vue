@@ -53,12 +53,22 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
-    const { searchParam, searchQuery, filters, currentPage, moviesPerPage } = store.state.movies;
+    try {
+      commit(MoviesMutationTypes.FETCH_MOVIES_REQUEST);
 
-    const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
+      const { searchParam, searchQuery, filters, currentPage, moviesPerPage } = store.state.movies;
+      const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
 
-    const moviesByQuery = await getMoviesByQuery(path);
-    commit(MoviesMutationTypes.SET_MOVIES, moviesByQuery);
+      const moviesByQuery = await getMoviesByQuery(path);
+
+      commit(MoviesMutationTypes.FETCH_MOVIES_SUCCESS, moviesByQuery);
+    } catch (error: any) {
+      commit(MoviesMutationTypes.FETCH_MOVIES_FAIL, {
+        errorMessage: error.message,
+        errorStatus: error.errorStatus,
+      });
+      console.warn('err in action');
+    }
   },
 
   [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {

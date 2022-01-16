@@ -10,6 +10,8 @@ export const state: IMoviesState = {
   searchParam: 'initial',
   filters: {},
   status: DataStatus.initial,
+  errorMessage: '',
+  errorStatus: '',
 };
 
 export const initialState: IMoviesState = {
@@ -21,4 +23,6 @@ export const initialState: IMoviesState = {
   searchParam: 'initial',
   filters: {},
   status: DataStatus.initial,
+  errorMessage: '',
+  errorStatus: '',
 };

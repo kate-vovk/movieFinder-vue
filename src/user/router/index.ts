@@ -6,6 +6,7 @@ import UserChat from '@/user/views/UserChat.vue';
 import NotFound from '@/user/views/NotFound.vue';
 
 import { store } from '@/store';
+import { ErrorActionTypes } from '@/store/modules/error/action-types';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -47,6 +48,8 @@ export const router = createRouter({
 
 // works like private routing;
 router.beforeEach((to, from, next) => {
+  store.dispatch(ErrorActionTypes.HIDE_ERROR);
+
   // if object contains meta with value  requiresAuth === true
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {

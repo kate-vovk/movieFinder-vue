@@ -16,6 +16,7 @@ export default class HTTPService {
   }
 
   static get(path = ''): Promise<AxiosResponse> {
+    // return axios.get('https://run.mocky.io/v3/0168c5f8-68c7-4fd2-a570-b36dc7bc0b93');
     return apiClient.get(path);
     // .then((response: AxiosResponse) => {
     //   return response;
