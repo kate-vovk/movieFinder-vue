@@ -1,10 +1,10 @@
 <template lang="">
-  <div className="accordionContainer">
-    <div @click="toggleOpenAccordion" className="accordion">
+  <div className="selectContainer">
+    <div @click="toggleOpenSelect" className="select selectShadow">
       {{ filter.name }}
-      <img :class="{ expandMore: showAccordion }" src="@/assets/expand_more_black_24dp.svg" />
+      <img :class="{ expandMore: showSelect }" src="@/assets/expand_more_black_24dp.svg" />
     </div>
-    <ul class="options" :class="{ optionsShow: showAccordion }">
+    <ul class="options" :class="{ optionsShow: showSelect }">
       <form>
         <li v-for="(option, i) in filter.options" :key="i">
           <FilterOptions
@@ -19,18 +19,18 @@
   </div>
 </template>
 <script lang="ts">
-import '@/user/styles/components/accordion.scss';
+import '@/user/styles/components/select.scss';
 import { defineComponent } from 'vue';
 import FilterOptions from '@/user/components/FilterOptions.vue';
 
 export default defineComponent({
-  name: 'AppAccordion',
+  name: 'AppSelect',
   components: {
     FilterOptions,
   },
   data() {
     return {
-      showAccordion: false,
+      showSelect: false,
       selectedOption: '',
     };
   },
@@ -41,8 +41,8 @@ export default defineComponent({
     },
   },
   methods: {
-    toggleOpenAccordion() {
-      this.showAccordion = !this.showAccordion;
+    toggleOpenSelect() {
+      this.showSelect = !this.showSelect;
     },
     setOption(selectedOption: string) {
       this.selectedOption = selectedOption;

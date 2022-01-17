@@ -2,7 +2,7 @@
   <div className="sidebarContainer">
     <ul>
       <li v-for="(filter, i) in filters" :key="i">
-        <AppAccordion :filter="filter" />
+        <AppSelect :filter="filter" />
       </li>
     </ul>
     <button className="filterButton" @click="filterMovies">filter</button>
@@ -12,13 +12,13 @@
 import '@/user/styles/components/sidebar.scss';
 import { defineComponent } from 'vue';
 import { sidebarFilterNamesFields } from '@/user/constants/sidebarFilterNamesFields';
-import AppAccordion from '@/user/components/Accordion.vue';
+import AppSelect from '@/user/components/FilterSelect.vue';
 import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 
 export default defineComponent({
   name: 'AppSidebar',
   components: {
-    AppAccordion,
+    AppSelect,
   },
   data() {
     return {
@@ -27,6 +27,7 @@ export default defineComponent({
   },
   methods: {
     filterMovies() {
+      this.$store.dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: 0 });
       this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
     },
   },

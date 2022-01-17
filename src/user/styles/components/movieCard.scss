@@ -8,6 +8,8 @@
   box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 .linkToMoviePage {
+  padding: 10px;
+
   &:hover {
     cursor: pointer;
   }
@@ -28,6 +30,6 @@
   .description {
     text-align: justify;
     min-height: 100px;
-    margin: 5px;
+    // margin: 0px 10px;
   }
 }
