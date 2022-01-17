@@ -29,19 +29,80 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     { filterParam, filterOption }: IFilter,
   ): void;
+  [MoviesActionTypes.SET_SEARCH_QUERY](
+    { commit, dispatch }: AugmentedActionContext,
+    { searchQuery }: { searchQuery: string },
+  ): void;
+  [MoviesActionTypes.SET_SEARCH_PARAM](
+    { commit, dispatch }: AugmentedActionContext,
+    { searchParam }: { searchParam: string },
+  ): void;
+  [MoviesActionTypes.SET_CURRENT_PAGE](
+    { commit }: AugmentedActionContext,
+    { pageValue }: { pageValue: number },
+  ): void;
+  [MoviesActionTypes.SET_MOVIES_PER_PAGE](
+    { commit }: AugmentedActionContext,
+    { moviesPerPage }: { moviesPerPage: number },
+  ): void;
 }
+// const { searchParam, searchQuery, filters } = store.state.movies;
 
 export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
-    const { selectParam, searchQuery, filters } = store.state.movies;
-    console.warn('TODO: store.state.movies', selectParam, searchQuery);
+    const { searchParam, searchQuery, filters, currentPage, moviesPerPage } = store.state.movies;
 
-    const path = createPath({ filters, selectParam, searchQuery });
+    const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
 
-    const movies = await getMoviesByQuery(path);
-    commit(MoviesMutationTypes.SET_MOVIES, movies);
+    const moviesByQuery = await getMoviesByQuery(path);
+    console.warn('GET Movies', searchParam, searchQuery);
+    commit(MoviesMutationTypes.SET_MOVIES, moviesByQuery);
+  },
+
+  [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
+    commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });
+  },
+
+  [MoviesActionTypes.SET_SEARCH_QUERY]({ commit, dispatch }, payload: { searchQuery: string }) {
+    const { searchParam } = store.state.movies;
+
+    commit(MoviesMutationTypes.SET_SEARCH_QUERY, { searchQuery: payload.searchQuery });
+
+    if (!searchParam) {
+      dispatch(MoviesActionTypes.SET_SEARCH_PARAM, { searchParam: 'initial' });
+    }
+    dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: 0 });
+    dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+  },
+
+  [MoviesActionTypes.SET_SEARCH_PARAM]({ commit, dispatch }, payload: { searchParam: string }) {
+    const { searchQuery } = store.state.movies;
+
+    commit(MoviesMutationTypes.SET_SEARCH_PARAM, { searchParam: payload.searchParam });
+
+    if (!payload.searchParam) {
+      commit(MoviesMutationTypes.SET_SEARCH_PARAM, { searchParam: 'initial' });
+    }
+    // if searchQuery is not empty
+    if (searchQuery) {
+      dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: 0 });
+      dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+    }
+  },
+
+  [MoviesActionTypes.SET_CURRENT_PAGE]({ commit, dispatch }, { pageValue }: { pageValue: number }) {
+    commit(MoviesMutationTypes.SET_CURRENT_PAGE, { currentPage: pageValue });
+    dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+  },
+  [MoviesActionTypes.SET_MOVIES_PER_PAGE](
+    { commit, dispatch },
+    { moviesPerPage }: { moviesPerPage: number },
+  ) {
+    console.warn('moviesPerPage', moviesPerPage);
+    commit(MoviesMutationTypes.SET_MOVIES_PER_PAGE, { moviesPerPage });
+    dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
   [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
     commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });

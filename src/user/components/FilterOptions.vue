@@ -1,5 +1,5 @@
 <template lang="">
-  <div @click="selectOption" className="selectOption">
+  <div @click="selectOption">
     <input type="radio" :name="option" :value="option" :checked="checked" />
     <label :for="option">{{ option }}</label>
   </div>

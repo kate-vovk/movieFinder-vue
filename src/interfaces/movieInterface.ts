@@ -33,8 +33,10 @@ export interface IGetMovies {
 export interface IMoviesState {
   movies: IMovie[];
   totalCount: number;
+  currentPage: number;
+  moviesPerPage: number;
   searchQuery: string;
-  selectParam: string;
+  searchParam: string;
   filters: { [key: string]: string[] };
   status: string;
 }
@@ -42,4 +44,11 @@ export interface IMoviesState {
 export interface IFilter {
   filterParam: string;
   filterOption: string;
+}
+
+export enum SearchOption {
+  initial = 'initial',
+  movie = 'movie',
+  actor = 'actor',
+  studio = 'studio',
 }
