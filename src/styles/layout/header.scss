@@ -1,6 +1,8 @@
 header {
   background-color: lightBlue;
   top: 0;
+  z-index: 2;
+
   .buttonsContainer {
     margin-left: auto;
     display: flex;
@@ -15,7 +17,6 @@ header {
       &:hover {
         cursor: pointer;
         background-color: rgb(182, 209, 218);
-        // background-color: blue;
       }
     }
 

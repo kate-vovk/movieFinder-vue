@@ -22,6 +22,7 @@ import '@/styles/layout/header.scss';
 import { defineComponent } from 'vue';
 import { CLIENT_PATHS } from '@/user/constants/constants';
 import MenuButton from '@/user/components/MenuButton.vue';
+import { MoviesActionTypes } from '@/store/modules/movies/action-types';
 
 export default defineComponent({
   name: 'NavBar',
@@ -30,10 +31,12 @@ export default defineComponent({
   },
   methods: {
     goToCart() {
-      this.$router.push(CLIENT_PATHS.signin);
+      this.$router.push(CLIENT_PATHS.cart);
     },
     goToMainPage() {
-      this.$router.push(CLIENT_PATHS.main);
+      this.$router.push(CLIENT_PATHS.movies);
+      this.$store.dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
+      // window.location.reload();
     },
   },
 });

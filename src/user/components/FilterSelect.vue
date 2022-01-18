@@ -4,7 +4,7 @@
       {{ filter.name }}
       <img :class="{ expandMore: showSelect }" src="@/assets/expand_more_black_24dp.svg" />
     </div>
-    <ul class="options" :class="{ optionsShow: showSelect }">
+    <ul class="options filterOption" :class="{ optionsShow: showSelect }">
       <form>
         <li v-for="(option, i) in filter.options" :key="i">
           <FilterOptions
@@ -18,6 +18,7 @@
     </ul>
   </div>
 </template>
+
 <script lang="ts">
 import '@/user/styles/components/select.scss';
 import { defineComponent } from 'vue';

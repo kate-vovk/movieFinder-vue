@@ -9,4 +9,5 @@ export type Getters = {
 
 export const getters: GetterTree<IAuth, RootState> & Getters = {
   isLoggedIn: (state: IAuth) => Boolean(state.userId),
+  authStatus: (state: IAuth) => state.userId,
 };
