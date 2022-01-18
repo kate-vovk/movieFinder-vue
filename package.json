@@ -16,6 +16,7 @@
     "lodash": "^4.17.21",
     "socket.io": "^4.4.0",
     "socket.io-client": "^4.4.0",
+    "vee-validate": "^4.5.7",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.12",

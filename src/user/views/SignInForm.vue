@@ -2,75 +2,93 @@
   <form className="loginForm" @submit.prevent="login">
     <div className="loginForm_inputs_container" aria-required="true">
       <input
-        v-model="form.email"
+        @change="handleEmailChange"
+        @blur="handleEmailChange"
+        :value="email"
+        name="email"
         className="inpText_Login"
         type="email"
-        required
         placeholder="Email"
       />
       <input
-        v-model="form.password"
+        name="password"
+        @change="handlePasswordChange"
+        @blur="handlePasswordChange"
+        :value="password"
         className="inpText_Login"
         type="password"
-        required
         placeholder="Password"
       />
+      <div className="errorMessage">{{ emailError }} {{ passwordError }} {{ error }}</div>
     </div>
     <button className="loginButton" @click="login" type="submit">Sign in</button>
   </form>
 </template>
 
 <script lang="ts">
-import { mapActions } from 'vuex';
-import { defineComponent, watchEffect } from 'vue';
+import { computed } from 'vue';
 
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
+import { useField } from 'vee-validate';
 import { CLIENT_PATHS } from '@/user/constants/constants';
-import { useStore } from '@/store';
+
 import '@/user/styles/components/loginForm.scss';
 
-export default defineComponent({
+export default {
   name: 'SignInForm',
-  data() {
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const error = computed(() => store.getters.errorMessage);
+
+    const {
+      value: email,
+      errorMessage: emailError,
+      handleChange: handleEmailChange,
+    } = useField('email', (value: any) => {
+      const requiredMessage = 'Email is required';
+
+      if (value === undefined || value === null) return requiredMessage;
+      if (!String(value).length) return requiredMessage;
+      const regex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!regex.test(String(value).toLowerCase())) {
+        return 'Please enter a valid email address';
+      }
+      return true;
+    });
+
+    const {
+      value: password,
+      errorMessage: passwordError,
+      handleChange: handlePasswordChange,
+    } = useField('password', (value: any) => {
+      const requiredMessage = 'Password is required';
+      if (value === undefined || value === null) return requiredMessage;
+      if (!String(value).length) return requiredMessage;
+
+      return true;
+    });
+
+    const login = async () => {
+      if (password.value && email.value && !emailError.value && !passwordError.value) {
+        await store.dispatch('LOG_IN', { email: email.value, password: password.value }); // instead of dispatch('LOG_IN')
+        router.push(CLIENT_PATHS.movies);
+      }
+    };
+
     return {
-      form: {
-        email: '',
-        password: '',
-      },
+      login,
+      email,
+      emailError,
+      handleEmailChange,
+      password,
+      passwordError,
+      handlePasswordChange,
+      error,
     };
   },
-  methods: {
-    ...mapActions(['LOG_IN']),
-    async login() {
-      await this.LOG_IN({ email: this.form.email, password: this.form.password }); // instead of dispatch('LOG_IN')
-      this.$router.push(CLIENT_PATHS.movies);
-    },
-  },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
-    },
-  },
-  created() {
-    const store = useStore();
-    watchEffect(() => {
-      console.warn('isLoggedeIn', this.isLoggedIn, store.state.auth);
-    });
-  },
-  // setup() {
-  //   const form = reactive<ILoginData>({
-  //     email: 'test@gmail.com',
-  //     password: 'Qwerty12345!',
-  //   });
-
-  //   const login = () => {
-  //     getLoginData(form).then(() => {
-  //       routerPush(CLIENT_PATHS.movies);
-  //     });
-  //   };
-  //   return {
-  //     form,
-  //     login,
-  //   };
-  // },
-});
+};
 </script>
