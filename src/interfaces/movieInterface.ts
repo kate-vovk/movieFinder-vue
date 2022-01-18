@@ -39,6 +39,8 @@ export interface IMoviesState {
   searchParam: string;
   filters: { [key: string]: string[] };
   status: string;
+  // errorMessage: string;
+  // errorStatus: any;
 }
 
 export interface IFilter {

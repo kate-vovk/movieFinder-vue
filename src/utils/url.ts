@@ -27,7 +27,6 @@ export const createPath = ({
     '',
   );
   const searchPath = searchQuery ? `&${searchParamsToBack[searchParam]}=${searchQuery}` : '';
-  console.warn('searchPath', searchPath);
   const finalPath = `page=${currentPage}&limit=${moviesPerPage}${searchPath}${filtersPath}`;
   return finalPath;
 };

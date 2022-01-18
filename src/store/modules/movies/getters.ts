@@ -11,4 +11,5 @@ export const getters: GetterTree<IMoviesState, RootState> & Getters = {
   totalCount: (state: IMoviesState) => state.totalCount,
   moviesPerPage: (state: IMoviesState) => state.moviesPerPage,
   currentPage: (state: IMoviesState) => state.currentPage,
+  moviesStatus: (state: IMoviesState) => state.status,
 };

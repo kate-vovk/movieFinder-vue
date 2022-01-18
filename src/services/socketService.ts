@@ -82,7 +82,7 @@ class SocketioService {
         userName: this.store.userName,
         roomname: this.roomname,
       });
-      // this.socket.disconnect();
+      this.socket.disconnect();
     }
   }
 

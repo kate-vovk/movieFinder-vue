@@ -4,8 +4,10 @@ import SignInForm from '@/user/views/SignInForm.vue';
 import MoviesPage from '@/user/views/MoviesPage.vue';
 import UserChat from '@/user/views/UserChat.vue';
 import NotFound from '@/user/views/NotFound.vue';
+import AppCart from '@/user/views/Cart.vue';
 
 import { store } from '@/store';
+import { ErrorActionTypes } from '@/store/modules/error/action-types';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,6 +32,12 @@ const routes: Array<RouteRecordRaw> = [
     component: SignInForm,
   },
   {
+    path: CLIENT_PATHS.cart,
+    name: 'Cart',
+    component: AppCart,
+    meta: { requiresAuth: true },
+  },
+  {
     path: CLIENT_PATHS.notFound,
     component: NotFound,
   },
@@ -47,6 +55,8 @@ export const router = createRouter({
 
 // works like private routing;
 router.beforeEach((to, from, next) => {
+  store.dispatch(ErrorActionTypes.HIDE_ERROR);
+
   // if object contains meta with value  requiresAuth === true
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {

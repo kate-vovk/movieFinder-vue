@@ -6,6 +6,7 @@ import { Mutations } from './mutations';
 import { MoviesMutationTypes } from './mutation-types';
 import { RootState, store } from '@/store';
 import { createPath } from '@/utils/url';
+import { initialState } from './state';
 
 // interface IQuery {
 //   selectParam: string;
@@ -45,6 +46,7 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     { moviesPerPage }: { moviesPerPage: number },
   ): void;
+  [MoviesActionTypes.CLEAR_MOVIES_STATE]({ commit }: AugmentedActionContext): void;
 }
 // const { searchParam, searchQuery, filters } = store.state.movies;
 
@@ -52,13 +54,18 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
   async [MoviesActionTypes.GET_MOVIES_BY_QUERY](
     { commit }, // { selectParam, searchQuery, filters }: IQuery,
   ) {
-    const { searchParam, searchQuery, filters, currentPage, moviesPerPage } = store.state.movies;
+    try {
+      commit(MoviesMutationTypes.FETCH_MOVIES_REQUEST);
 
-    const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
+      const { searchParam, searchQuery, filters, currentPage, moviesPerPage } = store.state.movies;
+      const path = createPath({ filters, searchParam, searchQuery, currentPage, moviesPerPage });
 
-    const moviesByQuery = await getMoviesByQuery(path);
-    console.warn('GET Movies', searchParam, searchQuery);
-    commit(MoviesMutationTypes.SET_MOVIES, moviesByQuery);
+      const moviesByQuery = await getMoviesByQuery(path);
+
+      commit(MoviesMutationTypes.FETCH_MOVIES_SUCCESS, moviesByQuery);
+    } catch (error) {
+      commit(MoviesMutationTypes.FETCH_MOVIES_FAIL);
+    }
   },
 
   [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
@@ -100,11 +107,11 @@ export const actions: ActionTree<IMoviesState, RootState> & Actions = {
     { commit, dispatch },
     { moviesPerPage }: { moviesPerPage: number },
   ) {
-    console.warn('moviesPerPage', moviesPerPage);
     commit(MoviesMutationTypes.SET_MOVIES_PER_PAGE, { moviesPerPage });
+    dispatch(MoviesActionTypes.SET_CURRENT_PAGE, { pageValue: initialState.currentPage });
     dispatch(MoviesActionTypes.GET_MOVIES_BY_QUERY);
   },
-  [MoviesActionTypes.ADD_FILTER_OPTION]({ commit }, { filterParam, filterOption }: IFilter) {
-    commit(MoviesMutationTypes.SET_FILTERS, { filterParam, filterOption });
+  [MoviesActionTypes.CLEAR_MOVIES_STATE]({ commit }) {
+    commit(MoviesMutationTypes.SET_INITIAL_STATE, initialState);
   },
 };
