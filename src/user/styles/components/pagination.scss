@@ -1,0 +1,68 @@
+.paginationContainer {
+  background-color: white;
+  height: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  .paginationElementsContainer {
+    display: flex;
+    height: inherit;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    button {
+      background-color: white;
+      border: 0px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+    .buttonHover {
+      &:hover {
+        background-color: rgb(238, 236, 236);
+        cursor: pointer;
+      }
+    }
+    .prevPageButton {
+      box-sizing: border-box;
+      position: relative;
+    }
+    .nextPageButton {
+      transform: rotate(180deg);
+    }
+
+    .textContainer {
+      box-sizing: border-box;
+    }
+    .itemPerPageContainer {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .itemPerPageOptions {
+        width: 40px;
+        box-sizing: border-box;
+        border-radius: 20px;
+      }
+    }
+
+    .options {
+      display: none;
+      background-color: white;
+      padding: 0px;
+
+      z-index: 1;
+      margin-top: -160px;
+      border-radius: 0px 0px 5px 5px;
+    }
+    .optionsShow {
+      display: block;
+      box-shadow: 0 -2px 1px 1px rgba(218, 204, 204, 0.2);
+    }
+  }
+}

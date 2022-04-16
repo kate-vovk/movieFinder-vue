@@ -1,0 +1,26 @@
+.sidebarContainer {
+  background-color: white;
+  width: 200px;
+  border-right: 1px solid #d3d3d3;
+  padding: 0px 10px;
+
+  ul {
+    padding: 0px;
+    li {
+      list-style: none;
+      text-align: left;
+      margin: 10px 0;
+    }
+  }
+  .filterButton {
+    background-color: white;
+    width: 100%;
+    padding: 5px 0px;
+    text-transform: uppercase;
+    border: 0px;
+    &:hover {
+      background-color: rgb(240, 235, 235);
+      cursor: pointer;
+    }
+  }
+}

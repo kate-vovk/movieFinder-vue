@@ -1,0 +1,31 @@
+header {
+  background-color: lightBlue;
+  top: 0;
+  z-index: 2;
+
+  .buttonsContainer {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    .navBarButton {
+      background-color: inherit;
+      border: 0px;
+      box-sizing: border-box;
+      height: 50px;
+      width: 50px;
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(182, 209, 218);
+      }
+    }
+
+    .buttonGroup {
+      .leftButton {
+      }
+      .rightButton {
+        border-left: 1px solid grey;
+      }
+    }
+  }
+}

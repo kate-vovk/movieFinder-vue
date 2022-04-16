@@ -1,0 +1,10 @@
+.customButton {
+  background-color: inherit;
+  border: 0px;
+  width: 60px;
+  height: inherit;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(196, 192, 192);
+  }
+}
